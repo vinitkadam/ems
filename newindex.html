@@ -2,20 +2,25 @@
 <html>
 <title>College Buddy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="assets/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
-.height{ height: 600px; }
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
 </style>
 <body>
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" style="width:250px;z-index:3;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="images/entirelogo.png" style="width:100%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
+  <a class="w3-bar-item w3-button w3-theme" href="#">Home</a>
   <a class="w3-bar-item w3-button" href="#">Upcoming Events</a>
   <a class="w3-bar-item w3-button" href="#">Events successfully conducted</a>
 
@@ -25,24 +30,26 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-main" style="margin-left:250px;">
 
-<div id="myTop" class="w3-container w3-top w3-theme w3-teals w3-large">
-  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-  <span id="myIntro" class="w3-hide">College Buddy: Homepage</span>
-  <button id="login" class=" w3-medium w3-btn w3-round-large w3-light-grey" onclick="document.getElementById('loginmodal').style.display='block'" >Login</button>
-  <button id="register" class="w3-btn w3-round-large w3-light-grey w3-medium" onclick="document.getElementById('registermodal').style.display='block'" >Register</button>
-  </p>
+<!-- top header starts-->
+<div class="w3-theme w3-container top w3-row">
+  <div class=" w3-padding w3-twothird">
+    <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+    <span id="myIntro" class="w3-xlarge" >College Buddy: Homepage</span>
+    </p>
+  </div>
+  <div class="w3-third  w3-margin-top w3-padding" style="text-align: right;">
+
+    <button id="login" class=" w3-medium w3-btn w3-round-large w3-light-grey " onclick="document.getElementById('loginmodal').style.display='block'" >Login</button>
+    <button id="register" class="w3-btn w3-round-large w3-light-grey w3-medium " onclick="document.getElementById('registermodal').style.display='block'" >Register</button>
+  </div>
 </div>
-
-<header class="w3-container w3-theme" style="padding:64px 32px">
-  <h1 class="w3-xxxlarge">COLLEGE BUDDY</h1>
-</header>
-
+<!-- top header ends-->
 <div class="w3-container" style="padding:32px">
 
 <div class="w3-row-padding">
 
     <div class="w3-half w3-section ">
-      <div class="w3-card-2 w3-padding height">
+      <div class="w3-card-2 w3-padding">
         <img src="images/event1.jpg" width="100%">
         <h3>Event 1 heading</h3>
         <p>
@@ -61,7 +68,7 @@ body {font-family: "Roboto", sans-serif}
 
 
     <div class="w3-half w3-section ">
-      <div class="w3-card-2 w3-padding height">
+      <div class="w3-card-2 w3-padding ">
         <img src="images/event2.jpg" width="100%">
         <h3>Event 2 heading</h3>
         <p>
@@ -81,7 +88,7 @@ body {font-family: "Roboto", sans-serif}
 <div class="w3-row-padding">
 
   <div class="w3-half w3-section ">
-    <div class="w3-card-2 w3-padding height">
+    <div class="w3-card-2 w3-padding ">
       <img src="images/event3.jpg" width="100%">
       <h3>Event 3 heading</h3>
       <p>
@@ -97,7 +104,7 @@ body {font-family: "Roboto", sans-serif}
   </div>
 
   <div class="w3-half w3-section ">
-    <div class="w3-card-2 w3-padding height">
+    <div class="w3-card-2 w3-padding ">
       <img src="images/event4.jpg" width="100%">
       <h3>Event 4 heading</h3>
       <p>
@@ -132,19 +139,6 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-
-// Change style of top container on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-        document.getElementById("myIntro").classList.add("w3-show-inline-block");
-    } else {
-        document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-        document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-    }
-}
-
 
 </script>
 <!--login modal start-->
