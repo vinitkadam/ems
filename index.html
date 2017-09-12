@@ -15,11 +15,18 @@ body {font-family: "Roboto", sans-serif}
   z-index: 1;
   width: 100%;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 .center{ margin: 0 auto; }
 </style>
 <body>
 
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" style="width:250px;z-index:6;" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left card" style="width:250px;z-index:6;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="images/entirelogo.png" style="width:100%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
@@ -51,7 +58,7 @@ body {font-family: "Roboto", sans-serif}
 <div class="w3-container " style="padding:32px;background-color: #f7f7f7;">
 	
 	<!-- template of each event starts-->
-    <div class="w3-card-4 w3-section max-width center">
+    <div class="card w3-section max-width center">
       <img src="images/event1.jpg" width="100%">
       <div class="w3-padding">
       <h3>Event 1 heading</h3>
@@ -71,7 +78,7 @@ body {font-family: "Roboto", sans-serif}
     <br>
 	<!-- template of each event ends-->
 	
-    <div class="w3-card-4 w3-section max-width center">
+    <div class="card w3-section max-width center">
 	  <img src="images/event2.jpg" width="100%">
       <div class="w3-padding">
       <h3>Event 2 heading</h3>
@@ -90,7 +97,7 @@ body {font-family: "Roboto", sans-serif}
 
 
 
-  <div class="w3-card-4 w3-section max-width center">
+  <div class="card w3-section max-width center">
     <img src="images/event3.jpg" width="100%">
     <div class="w3-padding">
     <h3>Event 3 heading</h3>
@@ -107,7 +114,7 @@ body {font-family: "Roboto", sans-serif}
   </div>
   <br>
 
-  <div class="w3-card-4 w3-section max-width center ">
+  <div class="card w3-section max-width center ">
     <img src="images/event4.jpg" width="100%">
     <div class="w3-padding">
     <h3>Event 4 heading</h3>
