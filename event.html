@@ -15,6 +15,17 @@ body {font-family: "Roboto", sans-serif}
   z-index: 1;
   width: 100%;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 10px;
+    background-color: #e2e2e2;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.large-text{ font-size: 14pt; text-align: justify;}
+.flex {display: flex;}
 .center{ margin: 0 auto; }
 </style>
 <body>
@@ -22,7 +33,7 @@ body {font-family: "Roboto", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" style="width:250px;z-index:6;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="images/entirelogo.png" style="width:100%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
+  <a class="w3-bar-item w3-button w3-theme" href="#">Home</a>
   <a class="w3-bar-item w3-button" href="#">Upcoming Events</a>
   <a class="w3-bar-item w3-button" href="#">Events successfully conducted</a>
 
@@ -48,89 +59,74 @@ body {font-family: "Roboto", sans-serif}
 <!-- top header ends-->
 
 <!-- events container starts-->
-<div class="w3-container " style="padding:32px;background-color: #f7f7f7;">
-	
-	<!-- template of each event starts-->
-    <div class="w3-card-4 w3-section max-width center">
+<div class="w3-container" style="padding:32px;background-color: #f7f7f7;">
+
+
+	<div class="center">
       <img src="images/event1.jpg" width="100%">
       <div class="w3-padding">
-      <h3>Event 1 heading</h3>
-      <p>
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-        this is event 1 short description containing less then 1000 characters
-      </p>
-      
-      <button class="w3-btn w3-round w3-theme-d3">READ MORE >></button>
+      <h3 class="w3-xxlarge" style="font-family:sans-serif">Event 1 heading</h3>
+	  <div>
+		<p> Published: 23 July 2017
+		</p>
+	  </div>
+
+	  <div class="card">
+		<strong>Start Date</strong> 16 August 2017
+		&nbsp;&nbsp;&nbsp;
+    <strong>End Date</strong> 16 August 2017
+    <hr style="border-width: 2px;">
+		<strong>Event-timing:</strong> 03:00 pm
+	  </div>
+      <p class="large-text">
+       this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everythingv
+	   valuethis the entire description of the event including date time and everythingvv
+	   valuethis the entire description of the event including date time and everything
+	   valuethis the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everythingthis the entire description of the event including date time and everythingthis the entire description of the event including date time and everythingthisthis the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everythingthis the entire description of the event including date time and everythingthis
+	   this the entire description of the event including date time and everythingthis the entire description of the event including date time and everythingthis
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+	   this the entire description of the event including date time and everything
+
+	  </p>
+
+      <button class="w3-btn w3-round w3-blue">Interested ?<br>Register for event >> >></button>
       </div>
-    </div> 
-    <br>
-	<!-- template of each event ends-->
-	
-    <div class="w3-card-4 w3-section max-width center">
-	  <img src="images/event2.jpg" width="100%">
-      <div class="w3-padding">
-      <h3>Event 2 heading</h3>
-      <p>
-        this is event 2 short description containing less then 1000 characters
-        this is event 2 short description containing less then 1000 characters
-        this is event 2 short description containing less then 1000 characters
-        this is event 2 short description containing less then 1000 characters
-        this is event 2 short description containing less then 1000 characters
-        this is event 2 short description containing less then 1000 characters
-      </p>
-      <button class="w3-btn w3-round w3-theme-d3">READ MORE >></button>
-      </div>    
     </div>
-    <br>
-
-
-
-  <div class="w3-card-4 w3-section max-width center">
-    <img src="images/event3.jpg" width="100%">
-    <div class="w3-padding">
-    <h3>Event 3 heading</h3>
-    <p>
-      this is event 3 short description containing less then 1000 characters
-      this is event 3 short description containing less then 1000 characters
-      this is event 3 short description containing less then 1000 characters
-      this is event 3 short description containing less then 1000 characters
-      this is event 3 short description containing less then 1000 characters
-      this is event 3 short description containing less then 1000 characters
-    </p>
-    <button class="w3-btn w3-round w3-theme-d3">READ MORE >></button>
-    </div>
-  </div>
-  <br>
-
-  <div class="w3-card-4 w3-section max-width center ">
-    <img src="images/event4.jpg" width="100%">
-    <div class="w3-padding">
-    <h3>Event 4 heading</h3>
-    <p>
-      this is event 4 short description containing less then 1000 characters
-      this is event 4 short description containing less then 1000 characters
-      this is event 4 short description containing less then 1000 characters
-      this is event 4 short description containing less then 1000 characters
-      this is event 4 short description containing less then 1000 characters
-      this is event 4 short description containing less then 1000 characters
-    </p>
-    <button class="w3-btn w3-round w3-theme-d3">READ MORE >></button>
-    </div>
-  </div>
-  <br>
-
+</div>
 
 </div>
 <!-- events container ends-->
 <footer class="w3-container w3-theme" style="padding:10px">
   <p class="w3-right">Copyright <i class="fa fa-copyright"></i>  2017 All rights reserved</p>
 </footer>
-     
+
 </div>
 
 <script>
@@ -144,18 +140,6 @@ function w3_close() {
     document.getElementById("myOverlay").style.display = "none";
 }
 
-// Change style of top container on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-        document.getElementById("myIntro").classList.add("w3-show-inline-block");
-    } else {
-        document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-        document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-    }
-}
-
 
 </script>
 <!--login modal start-->
@@ -163,32 +147,32 @@ function myFunction() {
     <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('loginmodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
-        
+
       <h2 class="w3-center">Login</h2>
       <form action="#" method="post">
-    
-      
+
+
         <label><b>User Name</b></label>
         <input class="w3-input" "type="text" placeholder="Enter User Name" name="roll_no" style="margin-bottom:10px;" required>
         <label><b>Password</b></label>
         <input class="w3-input" type="password" placeholder="Enter Password" name="password" style="margin-bottom:10px;" required>
         <button class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" name="login" type="submit">Login</button>
       </form>
-    
+
       </div>
     </div>
   </div>
 <!--login modal end-->
 
 <!--register modal start-->
-<div id="registermodal" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
+<div id="registermodal" class="w3-modal ">
+    <div class="w3-modal-content w3-card-4 w3-round-large w3-animate-top" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('registermodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
-        
+
       <form action="#" method="post">
         <h2 class="w3-center">Register</h2>
-      
+
         <label><b>User Name</b></label>
         <input class="w3-input" "type="text" placeholder="Enter User Name" name="roll_no" id="roll_no" style="margin-bottom:10px;" onchange="uppercase(this.value);"required>
         <label><b>Name</b></label>
@@ -205,10 +189,10 @@ function myFunction() {
         <br>
         <button class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" name="register" type="submit">Register</button>
       </form>
-    
+
       </div>
     </div>
   </div>
-<!--register modal end-->    
+<!--register modal end-->
 </body>
-</html> 
+</html>
