@@ -1,7 +1,6 @@
 <?php
   session_start();
   include 'config.php';
-  $results_per_page = 2;
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,8 @@
 <link rel="stylesheet" href="assets/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 .max-width{max-width: 700px}
@@ -36,10 +36,13 @@ body {font-family: "Roboto", sans-serif}
 .center{ margin: 0 auto; }
 .curPage{font-size: 20pt;}
 .animateTop{animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+.animateLeft{ animation:animateleft 0.4s}@keyframes animateleft{from{left: -300px; opacity: 0} to {left: 0px; opacity: 1;}}
 </style>
+
 <body>
 
-<nav class="w3-sidebar w3-bar-block w3-collapse card" style="width:250px;z-index:6;" id="mySidebar">
+<!-- side nav starts-->
+<nav class="w3-sidebar w3-bar-block w3-collapse card animateLeft" style="width:250px;z-index:6;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="images/entirelogo.png" style="width:100%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
@@ -47,10 +50,16 @@ body {font-family: "Roboto", sans-serif}
   <a class="w3-bar-item w3-button" href="#">Events successfully conducted</a>
 
 </nav>
+<!-- side nav ends-->
 
+<!--overlay div after opening the side nav starts-->
 <div class="w3-overlay hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+<!--overlay div after opening the side nav ends-->
 
+
+<!--main website container starts-->
 <div class="w3-main" style="margin-left:250px;">
+
 
 <!-- top header starts-->
 <div class="w3-theme w3-container top w3-row">
@@ -67,58 +76,33 @@ body {font-family: "Roboto", sans-serif}
 </div>
 <!-- top header ends-->
 
-<!-- events container starts-->
-<div class="w3-container " style="padding:32px;background-color: #f7f7f7;">
-<?php
-  if (isset($_GET["page"])) { $page = mysqli_real_escape_string($con,$_GET["page"]); } else { $page=1; };
-  $start_from = ($page-1) * $results_per_page;
-  $sql = "SELECT * FROM events ORDER BY s_date ASC LIMIT $start_from, $results_per_page";
-//  $result = $con->query($sql);
-  
-//  $query = "select * from events order by s_date";
-  $result = mysqli_query($con,$sql);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    echo "
-    <div class='card w3-section max-width center'>
-      <img src='images/".$row["e_id"].".jpg' width='100%'>
-      <div class='w3-padding'>
-      <h3>".$row["name"]."</h3>
-      <p style='text-align: justify'>
-        ".$row["short_desc"]."
-      </p>
 
-      <a href='events.php?id=".$row["e_id"]."'class='w3-btn w3-round w3-theme-d3' >READ MORE >></a>
-      </div>
-    </div>
-    <br>";
-  }
-?>
+<!--action section starts-->
+<div class="w3-container">
 
+everything in the wesbite will be displayed here<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
+this is the main action container<br />
 </div>
-<div style="width: 100%">
-	<div style="text-align:center;">
-		<?php 
-			$sql = "SELECT COUNT(e_id) AS total FROM events";
-			$result = $con->query($sql);
-			$row = $result->fetch_assoc();
-			$total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
-			echo "Pages: &nbsp;";  
-			for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
-						echo "<a href='index.php?page=".$i."'";
-						if ($i==$page)  echo " class='curPage' ";
-						else { echo "style='text-decoration: none;'";}
-						echo ">".$i."</a>&nbsp; "; 
-			} 
-		?>
-	</div>
+<!--action section ends-->
+
+
 <div>
-<!-- events container ends-->
+<!--footer starts-->
 <footer class="w3-container w3-theme" style="padding:10px">
   <p class="w3-right">Copyright <i class="fa fa-copyright"></i>  2017 All rights reserved</p>
 </footer>
 
 </div>
+<!--footer ends-->
 
 <script>
 // Open and close the sidebar on medium and small screens
@@ -130,8 +114,10 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-
 </script>
+
+
+
 <!--login modal start-->
 <div id="loginmodal" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
@@ -153,7 +139,7 @@ function w3_close() {
 					</tr>
 					<tr>
 						<td></td>
-						<td><input class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" type="submit" name="submit" value="Login"></td>
+						<td><input class="w3-btn w3-theme w3-round-xlarge " style="width:100%; margin-bottom:15px;" type="submit" name="submit" value="Login"></td>
 					</tr>
 				</table>
 			</form>
@@ -161,6 +147,7 @@ function w3_close() {
     </div>
   </div>
 <!--login modal end-->
+
 
 <!--register modal start-->
 <div id="registermodal" class="w3-modal">
@@ -238,7 +225,7 @@ function w3_close() {
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" name="submit" value="Login"></td>
+						<td><input class="w3-btn w3-theme w3-round-xlarge " type="submit" name="submit" value="Register"></td>
 					</tr>
 				</table>
 			</form>
@@ -247,5 +234,10 @@ function w3_close() {
     </div>
   </div>
 <!--register modal end-->
+
+</div>
+<!--main website container ends-->
+
+
 </body>
 </html>
