@@ -45,7 +45,7 @@ body {font-family: "Roboto", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-collapse card animateLeft" style="width:250px;z-index:6;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="images/entirelogo.png" style="width:100%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button " href="#">Home</a>
+  <a class="w3-bar-item w3-button " href="admin.php">Home</a>
   <a class="w3-bar-item w3-button w3-theme" href="addnewevent.php">Add New Events</a>
 </nav>
 <!-- side nav ends-->
