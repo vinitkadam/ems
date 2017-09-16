@@ -104,6 +104,10 @@ this is the main action container<br />
 </div>
 <!--footer ends-->
 
+</div>
+<!--main website container ends-->
+
+
 <script>
 // Open and close the sidebar on medium and small screens
 function w3_open() {
@@ -119,8 +123,8 @@ function w3_close() {
 
 
 <!--login modal start-->
-<div id="loginmodal" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
+<div id="loginmodal" class="w3-modal" style="z-index: 999">
+    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px; margin: 0 auto;">
       <div class="w3-container ">
         <span onclick="document.getElementById('loginmodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
 
@@ -150,9 +154,9 @@ function w3_close() {
 
 
 <!--register modal start-->
-<div id="registermodal" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
-      <div class="w3-container ">
+<div id="registermodal" class="w3-modal" style="z-index: 999">
+    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px; margin: 0 auto;">
+      <div class="w3-container">
         <span onclick="document.getElementById('registermodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
 		<h2 style="text-align: center;">Register</h2>
       <form method="POST" action="./auth/new_user.php">
@@ -235,8 +239,7 @@ function w3_close() {
   </div>
 <!--register modal end-->
 
-</div>
-<!--main website container ends-->
+
 
 
 </body>
