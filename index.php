@@ -1,7 +1,7 @@
 <?php
   session_start();
   include 'config.php';
-  $results_per_page = 2;
+  $results_per_page = 3;
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,18 +72,20 @@ body {font-family: "Roboto", sans-serif}
 <?php
   if (isset($_GET["page"])) { $page = mysqli_real_escape_string($con,$_GET["page"]); } else { $page=1; };
   $start_from = ($page-1) * $results_per_page;
-  $sql = "SELECT * FROM events ORDER BY s_date ASC LIMIT $start_from, $results_per_page";
+  $sql = "SELECT * FROM events ORDER BY s_date DESC LIMIT $start_from, $results_per_page";
 //  $result = $con->query($sql);
-  
+
 //  $query = "select * from events order by s_date";
   $result = mysqli_query($con,$sql);
   while($row=mysqli_fetch_assoc($result))
   {
     echo "
     <div class='card w3-section max-width center'>
-      <img src='images/".$row["e_id"].".jpg' width='100%'>
+      <img src='images/".$row["img_name"]."' width='100%'>
       <div class='w3-padding'>
       <h3>".$row["name"]."</h3>
+      <p style='background-color: #ededed; padding: 5px'>Views: ".$row["views"]."</p>
+      <p>Event date: &nbsp;".$row["s_date"]."&nbsp; to &nbsp;".$row["e_date"]."</p>
       <p style='text-align: justify'>
         ".$row["short_desc"]."
       </p>
@@ -92,24 +94,24 @@ body {font-family: "Roboto", sans-serif}
       </div>
     </div>
     <br>";
-  }
+ }
 ?>
 
 </div>
 <div style="width: 100%">
 	<div style="text-align:center;">
-		<?php 
+		<?php
 			$sql = "SELECT COUNT(e_id) AS total FROM events";
 			$result = $con->query($sql);
 			$row = $result->fetch_assoc();
 			$total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
-			echo "Pages: &nbsp;";  
+			echo "Pages: &nbsp;";
 			for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
 						echo "<a href='index.php?page=".$i."'";
 						if ($i==$page)  echo " class='curPage' ";
 						else { echo "style='text-decoration: none;'";}
-						echo ">".$i."</a>&nbsp; "; 
-			} 
+						echo ">".$i."</a>&nbsp; ";
+			}
 		?>
 	</div>
 <div>
@@ -133,7 +135,7 @@ function w3_close() {
 
 </script>
 <!--login modal start-->
-<div id="loginmodal" class="w3-modal">
+<div id="loginmodal" class="w3-modal" style="z-index: 10;">
     <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('loginmodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
@@ -141,7 +143,7 @@ function w3_close() {
       <h2 class="w3-center">Login</h2>
 
         <form method="POST" action="../auth/validate.php">
-				
+
 				<table>
 					<tr>
 						<td>Username (Your Roll Number) : </td>
@@ -163,7 +165,7 @@ function w3_close() {
 <!--login modal end-->
 
 <!--register modal start-->
-<div id="registermodal" class="w3-modal">
+<div id="registermodal" class="w3-modal" style="z-index: 10;">
     <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('registermodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
