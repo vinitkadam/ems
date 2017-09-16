@@ -1,6 +1,7 @@
 <?php
   session_start();
   include 'config.php';
+  $results_per_page = 2;
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,9 @@ body {font-family: "Roboto", sans-serif}
   top: 0;
   z-index: 1;
   width: 100%;
-}
+  animation:animatetop 0.4s
+}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+
 @media (min-width:993px){
   .hide-large{display:none!important}
 }
@@ -28,8 +31,11 @@ body {font-family: "Roboto", sans-serif}
 }
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	max-width: 720px;
 }
 .center{ margin: 0 auto; }
+.curPage{font-size: 20pt;}
+.animateTop{animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
 </style>
 <body>
 
@@ -64,8 +70,13 @@ body {font-family: "Roboto", sans-serif}
 <!-- events container starts-->
 <div class="w3-container " style="padding:32px;background-color: #f7f7f7;">
 <?php
-  $query = "select * from events order by s_date";
-  $result = mysqli_query($con,$query);
+  if (isset($_GET["page"])) { $page = mysqli_real_escape_string($con,$_GET["page"]); } else { $page=1; };
+  $start_from = ($page-1) * $results_per_page;
+  $sql = "SELECT * FROM events ORDER BY s_date ASC LIMIT $start_from, $results_per_page";
+//  $result = $con->query($sql);
+  
+//  $query = "select * from events order by s_date";
+  $result = mysqli_query($con,$sql);
   while($row=mysqli_fetch_assoc($result))
   {
     echo "
@@ -106,6 +117,23 @@ body {font-family: "Roboto", sans-serif}
 
 
 </div>
+<div style="width: 100%">
+	<div style="text-align:center;">
+		<?php 
+			$sql = "SELECT COUNT(e_id) AS total FROM events";
+			$result = $con->query($sql);
+			$row = $result->fetch_assoc();
+			$total_pages = ceil($row["total"] / $results_per_page); // calculate total pages with results
+			echo "Pages: &nbsp;";  
+			for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+						echo "<a href='index.php?page=".$i."'";
+						if ($i==$page)  echo " class='curPage' ";
+						else { echo "style='text-decoration: none;'";}
+						echo ">".$i."</a>&nbsp; "; 
+			} 
+		?>
+	</div>
+<div>
 <!-- events container ends-->
 <footer class="w3-container w3-theme" style="padding:10px">
   <p class="w3-right">Copyright <i class="fa fa-copyright"></i>  2017 All rights reserved</p>
@@ -145,16 +173,24 @@ function myFunction() {
         <span onclick="document.getElementById('loginmodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
 
       <h2 class="w3-center">Login</h2>
-      <form action="#" method="post">
 
-
-        <label><b>User Name</b></label>
-        <input class="w3-input" "type="text" placeholder="Enter User Name" name="roll_no" style="margin-bottom:10px;" required>
-        <label><b>Password</b></label>
-        <input class="w3-input" type="password" placeholder="Enter Password" name="password" style="margin-bottom:10px;" required>
-        <button class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" name="login" type="submit">Login</button>
-      </form>
-
+        <form method="POST" action="../auth/validate.php">
+				
+				<table>
+					<tr>
+						<td>Username (Your Roll Number) : </td>
+						<td><input type="text" name="username"></td>
+					</tr>
+					<tr>
+						<td>Password : </td>
+						<td><input type="password" name="password"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" type="submit" name="submit" value="Login"></td>
+					</tr>
+				</table>
+			</form>
       </div>
     </div>
   </div>
@@ -165,26 +201,81 @@ function myFunction() {
     <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('registermodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
-
-      <form action="#" method="post">
-        <h2 class="w3-center">Register</h2>
-
-        <label><b>User Name</b></label>
-        <input class="w3-input" "type="text" placeholder="Enter User Name" name="roll_no" id="roll_no" style="margin-bottom:10px;" onchange="uppercase(this.value);"required>
-        <label><b>Name</b></label>
-        <input class="w3-input" type="text" placeholder="Enter your name" name="name" style="margin-bottom:10px;" required>
-        <label><b>Password</b></label>
-        <input class="w3-input" type="password" placeholder="Enter Password" name="password" style="margin-bottom:10px;" required>
-        <label><b>Confirm password</b></label>
-        <input class="w3-input" type="password" placeholder="Confirm Password" name="cpassword" style="margin-bottom:10px;" required>
-        <label><b>Email-Id</b></label>
-        <input class="w3-input" type="email" placeholder="Enter your email" name="email" style="margin-bottom:10px;" required>
-        <label><b>College</b></label>
-        <input class="w3-input" type="text" placeholder="Enter your College Name" name="colname" style="margin-bottom:10px;" required>
-        <br>
-        <br>
-        <button class="w3-btn w3-teal w3-round-xlarge " style="width:100%; margin-bottom:15px;" name="register" type="submit">Register</button>
-      </form>
+		<h2 style="text-align: center;">Register</h2>
+      <form method="POST" action="./auth/new_user.php">
+				<!-- Table inside the form tag -->
+				<!-- This form contains the following info
+				* Roll No
+				* Password
+				*Confirm password
+				* First Name
+				* Middle Name
+				* Last Name
+				* Year (FE,SE,TE,BE)
+				* Division
+				* Batch
+				* Email
+				* Mobile Number -->
+				<table>
+					<tr>
+						<td>Username (Your Roll Number) : </td>
+						<td><input type="text" name="username"></td>
+					</tr>
+					<tr>
+						<td>Password : </td>
+						<td><input type="password" name="password"></td>
+					</tr>
+					<tr>
+						<td>Confirm Password : </td>
+						<td><input type="password" name="confirm_password"></td>
+					</tr>
+					<tr>
+						<td>First Name : </td>
+						<td><input type="text" name="first_name"></td>
+					</tr>
+					<tr>
+						<td>Middle Name : </td>
+						<td><input type="text" name="middle_name"></td>
+					</tr>
+					<tr>
+						<td>Last Name : </td>
+						<td><input type="text" name="last_name"></td>
+					</tr>
+					<tr>
+						<td>Year  : </td>
+						<td>
+							<input type="radio" name="year" value="fe">First Year<br>
+							<input type="radio" name="year" value="se">Second Year<br>
+							<input type="radio" name="year" value="te">Third Year<br>
+							<input type="radio" name="year" value="be">Fourth Year
+						</td>
+					</tr>
+					<tr>
+						<td>Division : </td>
+						<td><input type="text" name="division"></td>
+					</tr>
+					<tr>
+						<td>Batch  : </td>
+						<td>
+							<input type="radio" name="batch" value="one">1<br>
+							<input type="radio" name="batch" value="two">2<br>
+							<input type="radio" name="batch" value="three">3
+						</td>
+					</tr>
+					<tr>
+						<td>Email : </td>
+						<td><input type="email" name="email"></td>
+					</tr>
+					<tr>
+						<td>Mobile Number : </td>
+						<td><input type="text" name="mobile"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" name="submit" value="Login"></td>
+					</tr>
+				</table>
+			</form>
 
       </div>
     </div>
