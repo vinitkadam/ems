@@ -35,7 +35,7 @@ body {font-family: "Roboto", sans-serif}
 }
 .center{ margin: 0 auto; }
 .curPage{font-size: 20pt;}
-.animateTop{animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+.animateTop{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
 </style>
 <body>
 
@@ -136,7 +136,7 @@ function w3_close() {
 </script>
 <!--login modal start-->
 <div id="loginmodal" class="w3-modal" style="z-index: 10;">
-    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
+    <div class="w3-modal-content w3-card-4 w3-round-large animateTop" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('loginmodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
 
@@ -166,7 +166,7 @@ function w3_close() {
 
 <!--register modal start-->
 <div id="registermodal" class="w3-modal" style="z-index: 10;">
-    <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width: 500px">
+    <div class="w3-modal-content w3-card-4 w3-round-large animateTop" style="max-width: 500px">
       <div class="w3-container ">
         <span onclick="document.getElementById('registermodal').style.display='none'" class="w3-button w3-display-topright w3-round-large w3-text-red">&times;</span>
 		<h2 style="text-align: center;">Register</h2>
