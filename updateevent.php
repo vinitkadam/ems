@@ -91,7 +91,7 @@ body {font-family: "Roboto", sans-serif}
 <!--action section starts-->
 <div class="w3-container" >
 
-	<form action="insertnewevent.php" method="post" class="w3-input" enctype="multipart/form-data" >
+	<form action="updateeventdb.php?id=<?php echo $id; ?>" method="post" class="w3-input" enctype="multipart/form-data" >
         <div style="padding:10px; align-content:center" class="border">
             Event Name :<span style='color: red;'> *</span> <br>
             <input id="evtname" name="evtname" class="w3-input" type="text" style="margin-bottom:10px;width:100%" required value="<?php echo $name; ?>" /><br><br>
@@ -113,6 +113,7 @@ body {font-family: "Roboto", sans-serif}
             <input id="c_no1" name="c_no1" class="w3-input" type="text" style="margin-bottom:10px;width:100%" required value="<?php echo $c_no1 ?>" /><br><br>
             Contact number 2:(optional) <br>
             <input id="c_no2" name="c_no2" class="w3-input" type="text" style="margin-bottom:10px;width:100%" value="<?php echo $c_no2 ?>" /><br><br>
+			<input id="submit" type="submit" value="Submit" class="w3-btn w3-teal w3-round-xlarge "/>
         </div>
     </form>
 
